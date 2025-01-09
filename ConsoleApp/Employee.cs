@@ -1,6 +1,6 @@
 ﻿namespace ConsoleApp
 {
-    class Employee
+    public class Employee
     {
         public string name { get; private set; }
         public string surname { get; private set; }
