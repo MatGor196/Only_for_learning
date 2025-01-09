@@ -1,6 +1,6 @@
 namespace ConsoleApp.Tests
 {
-    public class Tests
+    public class EmployeeTests
     {
         [Test]
         public void SumTest()
