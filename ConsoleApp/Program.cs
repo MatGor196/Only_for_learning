@@ -24,7 +24,7 @@ employee3.AddMark(8);
 var ListOfEmployees = new List<Employee>()
     {employee1, employee2, employee3};
 
-int result = -1;
+float result = -1;
 var employee_with_max_value = new Employee("---", "---", 0);
 
 foreach (var employee in ListOfEmployees)
@@ -37,7 +37,11 @@ foreach (var employee in ListOfEmployees)
     }
 }
 
-Console.WriteLine("Pracownik z najlepszymi ocenami:");
-Console.WriteLine(employee_with_max_value.name + " " +
-                  employee_with_max_value.surname + ", " +
-                  employee_with_max_value.age);
+Console.WriteLine($"Pracownik z najlepszymi ocenami: {employee_with_max_value.name} {employee_with_max_value.surname}, {employee_with_max_value.age} lat");
+Console.WriteLine();
+
+Console.WriteLine("Statystyki:");
+var stats = employee_with_max_value.GetStatistics();
+Console.WriteLine($"Minimalna ocena: {stats.min}");
+Console.WriteLine($"Maksymalna ocena: {stats.max}");
+Console.WriteLine($"Średnia: {stats.average}");

@@ -62,5 +62,21 @@ namespace ConsoleApp.Tests
             //assert
             Assert.AreEqual(0, result);
         }
+
+        [Test]
+        public void GetStatisticsTest()
+        {
+            var employee = new Employee("---", "---", 0);
+            employee.AddMark(1);
+            employee.AddMark(2);
+            employee.AddMark(3);
+            employee.AddMark(4);
+
+            var stats = employee.GetStatistics();
+
+            Assert.AreEqual(1, stats.min);
+            Assert.AreEqual(4, stats.max);
+            Assert.AreEqual(2.5, stats.average);
+        }
     }
 }
