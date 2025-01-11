@@ -25,12 +25,34 @@
             this.marks = new List<float>();
         }
 
-        public void AddMark(int mark_to_add)
+        public void AddMark(float mark_to_add)
         {
             if (mark_to_add >= 1 && mark_to_add <= 10)
             {
                 this.marks.Add(mark_to_add);
             }
+            else
+            {
+                Console.WriteLine("Zły zakres");
+            }
+        }
+
+        public void AddMark(string mark_to_add)
+        {
+            if (float.TryParse(mark_to_add, out float result))
+            {
+                this.AddMark(result);
+            }
+            else
+            {
+                Console.WriteLine("String nie jest konwertowalny na float");
+            }
+        }
+
+        public void AddMark(int mark_to_add)
+        {
+            var result = (float)mark_to_add;
+            this.AddMark(result);
         }
 
         public float Result()
