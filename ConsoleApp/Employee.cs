@@ -90,5 +90,73 @@
 
             return stats;
         }
+
+        public Statistics GetStatisticsWithWhile()
+        {
+            Statistics stats = new Statistics();
+
+            stats.min = float.MaxValue;
+            stats.max = float.MinValue;
+            stats.average = 0;
+
+            var index = 0;
+            while (index < this.marks.Count)
+            {
+                stats.average += this.marks[index];
+
+                stats.min = Math.Min(stats.min, this.marks[index]);
+                stats.max = Math.Max(stats.max, this.marks[index]);
+                index++;
+            }
+
+            stats.average /= this.marks.Count;
+
+            return stats;
+        }
+
+        public Statistics GetStatisticsWithDoWhile()
+        {
+            Statistics stats = new Statistics();
+
+            stats.min = float.MaxValue;
+            stats.max = float.MinValue;
+            stats.average = 0;
+
+            var index = 0;
+            do
+            {
+                stats.average += this.marks[index];
+
+                stats.min = Math.Min(stats.min, this.marks[index]);
+                stats.max = Math.Max(stats.max, this.marks[index]);
+                index++;
+            }
+            while (index < this.marks.Count);
+
+            stats.average /= this.marks.Count;
+
+            return stats;
+        }
+
+        public Statistics GetStatisticsWithFor()
+        {
+            Statistics stats = new Statistics();
+
+            stats.min = float.MaxValue;
+            stats.max = float.MinValue;
+            stats.average = 0;
+
+            for(var index = 0; index < this.marks.Count; index++)
+            {
+                stats.average += this.marks[index];
+
+                stats.min = Math.Min(stats.min, this.marks[index]);
+                stats.max = Math.Max(stats.max, this.marks[index]);
+            }
+
+            stats.average /= this.marks.Count;
+
+            return stats;
+        }
     }
 }

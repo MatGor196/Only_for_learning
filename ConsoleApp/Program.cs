@@ -41,7 +41,7 @@ Console.WriteLine($"Pracownik z najlepszymi ocenami: {employee_with_max_value.na
 Console.WriteLine();
 
 Console.WriteLine("Statystyki:");
-var stats = employee_with_max_value.GetStatistics();
+var stats = employee_with_max_value.GetStatisticsWithFor();
 Console.WriteLine($"Minimalna ocena: {stats.min}");
 Console.WriteLine($"Maksymalna ocena: {stats.max}");
 Console.WriteLine($"Średnia: {stats.average}");
