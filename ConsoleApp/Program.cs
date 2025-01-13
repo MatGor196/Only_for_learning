@@ -1,47 +1,26 @@
 ﻿using ConsoleApp;
 
-var employee1 = new Employee("Adam", "Kowalski", 30);
-employee1.AddMark(1);
-employee1.AddMark(2);
-employee1.AddMark(3);
-employee1.AddMark(4);
-employee1.AddMark(5);
+Console.WriteLine("Witaj w programie do oceny pracowników");
+Console.WriteLine("======================================");
 
-var employee2 = new Employee("Kasia", "Nowak", 20);
-employee2.AddMark(1);
-employee2.AddMark(4);
-employee2.AddMark(3);
-employee2.AddMark(7);
-employee2.AddMark(8);
+var employee = new Employee();
 
-var employee3 = new Employee("Krystian", "Żukowski", 25);
-employee3.AddMark(3);
-employee3.AddMark(5);
-employee3.AddMark(7);
-employee3.AddMark(5);
-employee3.AddMark(8);
-
-var ListOfEmployees = new List<Employee>()
-    {employee1, employee2, employee3};
-
-float result = -1;
-var employee_with_max_value = new Employee("---", "---", 0);
-
-foreach (var employee in ListOfEmployees)
+while (true)
 {
-    var current_result = employee.Result();
-    if (current_result > result)
+    Console.WriteLine("Podaj kolejną ocenę: ");
+    var input = Console.ReadLine();
+    if (input == "q")
     {
-        employee_with_max_value = employee;
-        result = current_result;
+        break;
     }
+
+    employee.AddMark(input);
 }
 
-Console.WriteLine($"Pracownik z najlepszymi ocenami: {employee_with_max_value.name} {employee_with_max_value.surname}, {employee_with_max_value.age} lat");
-Console.WriteLine();
+var stat = employee.GetStatistics();
 
-Console.WriteLine("Statystyki:");
-var stats = employee_with_max_value.GetStatisticsWithFor();
-Console.WriteLine($"Minimalna ocena: {stats.min}");
-Console.WriteLine($"Maksymalna ocena: {stats.max}");
-Console.WriteLine($"Średnia: {stats.average}");
+Console.WriteLine();
+Console.WriteLine($"Średnia: {stat.average}");
+Console.WriteLine($"Min: {stat.min}");
+Console.WriteLine($"Max: {stat.max}");
+Console.WriteLine($"Ocena literowa: {stat.average_letter}");

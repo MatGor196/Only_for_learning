@@ -7,6 +7,14 @@
         public int age { get; private set; }
 
         private List<float> marks;
+        public Employee()
+        {
+            this.name = "-";
+            this.surname = "-";
+            this.age = 0;
+
+            this.marks = new List<float>();
+        }
         public Employee(string name, string surname)
         {
             this.name = name;
@@ -55,6 +63,36 @@
             this.AddMark(result);
         }
 
+        public void AddMark(char mark_to_add)
+        {
+            switch(mark_to_add)
+            {
+                case 'A':
+                case 'a':
+                    this.marks.Add(10);
+                    break;
+                case 'B':
+                case 'b':
+                    this.marks.Add(8);
+                    break;
+                case 'C':
+                case 'c':
+                    this.marks.Add(6);
+                    break;
+                case 'D':
+                case 'd':
+                    this.marks.Add(4);
+                    break;
+                case 'E':
+                case 'e':
+                    this.marks.Add(2);
+                    break;
+                default:
+                    this.marks.Add(1);
+                    break;
+            }
+        }
+
         public float Result()
         {
             if (this.marks.Count == 0)
@@ -87,6 +125,25 @@
             }
 
             stats.average /= this.marks.Count;
+
+            switch(stats.average)
+            {
+                case var average when average >= 8:
+                stats.average_letter = 'A';
+                    break;
+                case var average when average >= 6:
+                    stats.average_letter = 'B';
+                    break;
+                case var average when average >= 4:
+                    stats.average_letter = 'C';
+                    break;
+                case var average when average >= 2:
+                    stats.average_letter = 'D';
+                    break;
+                case var average when average >= 0:
+                    stats.average_letter = 'E';
+                    break;
+            }
 
             return stats;
         }
