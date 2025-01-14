@@ -35,13 +35,13 @@
 
         public void AddMark(float mark_to_add)
         {
-            if (mark_to_add >= 1 && mark_to_add <= 10)
+            if (mark_to_add >= 0 && mark_to_add <= 10)
             {
                 this.marks.Add(mark_to_add);
             }
             else
             {
-                Console.WriteLine("Zły zakres");
+                throw new Exception("Zły zakres");
             }
         }
 
@@ -49,11 +49,15 @@
         {
             if (float.TryParse(mark_to_add, out float result))
             {
-                this.AddMark(result);
+                this.AddMark((float)result);
+            }
+            else if (char.TryParse(mark_to_add, out char result_in_char))
+            {
+                this.AddMark((char)result_in_char);
             }
             else
             {
-                Console.WriteLine("String nie jest konwertowalny na float");
+                throw new Exception("String nie jest konwertowalny na float");
             }
         }
 
@@ -87,9 +91,12 @@
                 case 'e':
                     this.marks.Add(2);
                     break;
-                default:
-                    this.marks.Add(1);
+                case 'F':
+                case 'f':
+                    this.marks.Add(0);
                     break;
+                default:
+                    throw new Exception("Wpisano złą ocenę");
             }
         }
 
@@ -144,74 +151,6 @@
                     stats.average_letter = 'E';
                     break;
             }
-
-            return stats;
-        }
-
-        public Statistics GetStatisticsWithWhile()
-        {
-            Statistics stats = new Statistics();
-
-            stats.min = float.MaxValue;
-            stats.max = float.MinValue;
-            stats.average = 0;
-
-            var index = 0;
-            while (index < this.marks.Count)
-            {
-                stats.average += this.marks[index];
-
-                stats.min = Math.Min(stats.min, this.marks[index]);
-                stats.max = Math.Max(stats.max, this.marks[index]);
-                index++;
-            }
-
-            stats.average /= this.marks.Count;
-
-            return stats;
-        }
-
-        public Statistics GetStatisticsWithDoWhile()
-        {
-            Statistics stats = new Statistics();
-
-            stats.min = float.MaxValue;
-            stats.max = float.MinValue;
-            stats.average = 0;
-
-            var index = 0;
-            do
-            {
-                stats.average += this.marks[index];
-
-                stats.min = Math.Min(stats.min, this.marks[index]);
-                stats.max = Math.Max(stats.max, this.marks[index]);
-                index++;
-            }
-            while (index < this.marks.Count);
-
-            stats.average /= this.marks.Count;
-
-            return stats;
-        }
-
-        public Statistics GetStatisticsWithFor()
-        {
-            Statistics stats = new Statistics();
-
-            stats.min = float.MaxValue;
-            stats.max = float.MinValue;
-            stats.average = 0;
-
-            for(var index = 0; index < this.marks.Count; index++)
-            {
-                stats.average += this.marks[index];
-
-                stats.min = Math.Min(stats.min, this.marks[index]);
-                stats.max = Math.Max(stats.max, this.marks[index]);
-            }
-
-            stats.average /= this.marks.Count;
 
             return stats;
         }

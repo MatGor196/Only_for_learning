@@ -14,13 +14,20 @@ while (true)
         break;
     }
 
-    employee.AddMark(input);
+    try
+    {
+        employee.AddMark(input);
+    }
+    catch(Exception ex)
+    {
+        Console.WriteLine($"{ex.Message}");
+    }
 }
 
 var stat = employee.GetStatistics();
 
 Console.WriteLine();
-Console.WriteLine($"Średnia: {stat.average}");
+Console.WriteLine($"Średnia: {stat.average:N2}");
 Console.WriteLine($"Min: {stat.min}");
 Console.WriteLine($"Max: {stat.max}");
 Console.WriteLine($"Ocena literowa: {stat.average_letter}");
