@@ -1,35 +1,16 @@
 ﻿namespace ConsoleApp
 {
-    public class Employee
+    public class Employee : Person
     {
-        public string name { get; private set; }
-        public string surname { get; private set; }
-        public int age { get; private set; }
-
         private List<float> marks;
         public Employee()
+            : base("-", "-", 0, 'M')
         {
-            this.name = "-";
-            this.surname = "-";
-            this.age = 0;
-
             this.marks = new List<float>();
         }
-        public Employee(string name, string surname)
+        public Employee(string name, string surname, int age, char sex)
+            : base (name, surname, age, sex)
         {
-            this.name = name;
-            this.surname = surname;
-            this.age = 0;
-
-            this.marks = new List<float>();
-        }
-
-        public Employee(string name, string surname, int age)
-        {
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-
             this.marks = new List<float>();
         }
 
