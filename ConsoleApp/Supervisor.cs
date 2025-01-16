@@ -1,26 +1,12 @@
 ﻿namespace ConsoleApp
 {
-    public class Employee : IEmployee
+    internal class Supervisor : IEmployee
     {
         private List<float> marks;
-
         public string name { get; set; }
         public string surname { get; set; }
         public int age { get; set; }
         public char sex { get; set; }
-
-        public Employee()
-        {
-            this.marks = new List<float>();
-        }
-        public Employee(string name, string surname, int age, char sex)
-        {
-            this.marks = new List<float>();
-            this.name = name;
-            this.surname = surname;
-            this.age = age;
-            this.sex = sex;
-        }
 
         public void AddMark(float mark_to_add)
         {
@@ -34,22 +20,6 @@
             }
         }
 
-        public void AddMark(string mark_to_add)
-        {
-            if (float.TryParse(mark_to_add, out float result))
-            {
-                this.AddMark((float)result);
-            }
-            else if (char.TryParse(mark_to_add, out char result_in_char))
-            {
-                this.AddMark((char)result_in_char);
-            }
-            else
-            {
-                throw new Exception("String nie jest konwertowalny na float");
-            }
-        }
-
         public void AddMark(int mark_to_add)
         {
             var result = (float)mark_to_add;
@@ -58,7 +28,7 @@
 
         public void AddMark(char mark_to_add)
         {
-            switch(mark_to_add)
+            switch (mark_to_add)
             {
                 case 'A':
                 case 'a':
@@ -89,19 +59,69 @@
             }
         }
 
-        public float Result()
+        public void AddMark(string mark_to_add)
         {
-            if (this.marks.Count == 0)
-                return 0;
-
-            float sum = 0;
-
-            foreach (var mark in this.marks)
+            switch(mark_to_add)
             {
-                sum += mark;
+                case "6":
+                    this.marks.Add(10);
+                    break;
+                case "-6":
+                case "6-":
+                    this.marks.Add(9);
+                    break;
+                case "+5":
+                case "5+":
+                    this.marks.Add(9);
+                    break;
+                case "5":
+                    this.marks.Add(8);
+                    break;
+                case "-5":
+                case "5-":
+                    this.marks.Add(7);
+                    break;
+                case "+4":
+                case "4+":
+                    this.marks.Add(7);
+                    break;
+                case "4":
+                    this.marks.Add(6);
+                    break;
+                case "-4":
+                case "4-":
+                    this.marks.Add(5);
+                    break;
+                case "+3":
+                case "3+":
+                    this.marks.Add(5);
+                    break;
+                case "3":
+                    this.marks.Add(4);
+                    break;
+                case "-3":
+                case "3-":
+                    this.marks.Add(3);
+                    break;
+                case "+2":
+                case "2+":
+                    this.marks.Add(3);
+                    break;
+                case "2":
+                    this.marks.Add(2);
+                    break;
+                case "-2":
+                case "2-":
+                    this.marks.Add(1);
+                    break;
+                case "+1":
+                case "1+":
+                    this.marks.Add(1);
+                    break;
+                case "1":
+                    this.marks.Add(0);
+                    break;
             }
-
-            return sum;
         }
 
         public Statistics GetStatistics()
@@ -122,10 +142,10 @@
 
             stats.average /= this.marks.Count;
 
-            switch(stats.average)
+            switch (stats.average)
             {
                 case var average when average >= 8:
-                stats.average_letter = 'A';
+                    stats.average_letter = 'A';
                     break;
                 case var average when average >= 6:
                     stats.average_letter = 'B';
@@ -142,6 +162,21 @@
             }
 
             return stats;
+        }
+
+        public float Result()
+        {
+            if (this.marks.Count == 0)
+                return 0;
+
+            float sum = 0;
+
+            foreach (var mark in this.marks)
+            {
+                sum += mark;
+            }
+
+            return sum;
         }
     }
 }
