@@ -2,8 +2,9 @@
 {
     public class EmployeeInMemory : EmployeeBase
     {
+        public delegate void MarkAddedDelegate(object sender, EventArgs args);
+        public event MarkAddedDelegate MarkAdded;
         private List<float> marks;
-
         public EmployeeInMemory(string name, string surname, int age, char sex) 
             : base(name, surname, age, sex)
         {
@@ -15,6 +16,11 @@
             if (mark_to_add >= 0 && mark_to_add <= 10)
             {
                 this.marks.Add(mark_to_add);
+
+                if(MarkAdded != null)
+                {
+                    MarkAdded(this, new EventArgs());
+                }
             }
             else
             {

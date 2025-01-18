@@ -4,6 +4,11 @@ Console.WriteLine("Witaj w programie do oceny pracowników");
 Console.WriteLine("======================================");
 
 var employee = new EmployeeInMemory("no name","no surname",0,'M');
+employee.MarkAdded += EmployeeMarkAdded;
+void EmployeeMarkAdded(object sender, EventArgs args)
+{
+    Console.WriteLine("Dodano nową ocenę");
+}
 
 while (true)
 {
@@ -18,7 +23,7 @@ while (true)
     {
         employee.AddMark(input);
     }
-    catch(Exception ex)
+    catch (Exception ex)
     {
         Console.WriteLine($"{ex.Message}");
     }
@@ -27,7 +32,7 @@ while (true)
 var stat = employee.GetStatistics();
 
 Console.WriteLine();
-Console.WriteLine($"Średnia: {stat.average:N2}");
-Console.WriteLine($"Min: {stat.min}");
-Console.WriteLine($"Max: {stat.max}");
-Console.WriteLine($"Ocena literowa: {stat.average_letter}");
+Console.WriteLine($"średnia: {stat.average:n2}");
+Console.WriteLine($"min: {stat.min}");
+Console.WriteLine($"max: {stat.max}");
+Console.WriteLine($"ocena literowa: {stat.average_letter}");
